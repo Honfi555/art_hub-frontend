@@ -22,7 +22,7 @@ const useFetchArticleImages = (articleId: string, maxAmount: number | null = nul
         const fetchImages = async () => {
             setLoading(true);
             try {
-                let href = `http://localhost:8000/feed/article_images?article_id=${articleId}`;
+                let href = `http://${import.meta.env.VITE_API_URL}/feed/article_images?article_id=${articleId}`;
                 if (maxAmount) {
                     href += `&max_amount=${maxAmount}`;
                 }

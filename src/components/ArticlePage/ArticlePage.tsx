@@ -38,7 +38,7 @@ const ArticlePage = () => {
         const fetchArticle = async () => {
             setLoadingArticle(true);
             try {
-                const response = await fetch(`http://localhost:8000/feed/article?article_id=${articleId}`, {
+                const response = await fetch(`http://${import.meta.env.VITE_API_URL}/feed/article?article_id=${articleId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

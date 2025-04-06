@@ -40,7 +40,7 @@ const AuthorPage = () => {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `http://localhost:8000/users/author?author_name=${authorName}`,
+                    `http://${import.meta.env.VITE_API_URL}/users/author?author_name=${authorName}`,
                     {
                         method: 'GET',
                         headers: {

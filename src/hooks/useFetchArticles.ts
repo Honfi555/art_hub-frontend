@@ -27,8 +27,8 @@ function useFetchArticles(login?: string) {
             try {
                 // Если есть login, передаём его в query-параметр ?login=...
                 const url = login
-                    ? `http://localhost:8000/feed/articles?login=${login}`
-                    : `http://localhost:8000/feed/articles`;
+                    ? `http://${import.meta.env.VITE_API_URL}/feed/articles?login=${login}`
+                    : `http://${import.meta.env.VITE_API_URL}/feed/articles`;
 
                 const response = await fetch(url, {
                     method: 'GET',
