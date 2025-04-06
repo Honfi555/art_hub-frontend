@@ -1,0 +1,77 @@
+:root {
+    --font-size: 20px;
+}
+
+.authForm {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 20vh;
+    gap: 15px;
+
+    font-size: var(--font-size);
+
+    > div {
+        width: 30%;
+        border-radius: 10px;
+        background-color: var(--color-primary);
+        padding: 10px;
+    }
+}
+
+.authFormHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        margin: 5px;
+    }
+}
+
+.authFormBody > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    .authFormText {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.authFormFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        margin: 5px;
+    }
+
+    p > a {
+        color: var(--color-primary-href);
+        text-decoration: none;
+    }
+}
+
+.authSubmitInput, .authFormCredentialsInput {
+    width: 90%;
+
+    border: 2px solid var(--color-primary-href);
+    border-radius: 10px;
+    background-color: var(--color-header);
+
+    padding: 0 7px;
+
+    font-size: var(--font-size);
+}

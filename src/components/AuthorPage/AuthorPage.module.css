@@ -1,0 +1,22 @@
+.authorPage {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-bottom: 50px;
+}
+
+.authorInfo {
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+
+    p {
+        padding-left: 10%;
+    }
+}

@@ -1,0 +1,58 @@
+.headerForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+
+    background-color: var(--color-header);
+}
+
+.headerCompanyLogo {
+    padding-left: 3%;
+
+    p {
+        font-size: 25px;
+    }
+
+    img {
+        width: 50px;
+        border-radius: 50%;
+    }
+}
+
+.feedHref {
+    text-decoration: var(--color-header-href);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+.headerUserAvatar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    padding-right: 3%;
+
+    p {
+        font-size: 25px;
+    }
+
+    img {
+        height: 50px;
+        border-radius: 50%;
+    }
+}
+
+.logout {
+    border-radius: 0 !important;
+}

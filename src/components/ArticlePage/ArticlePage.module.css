@@ -1,0 +1,40 @@
+.articlePage {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 0;
+}
+
+.article {
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px 10px;
+
+    background-color: var(--color-primary);
+    border-radius: 15px;
+}
+
+.articleImages {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding-top: 20px;
+
+    gap: 5px;
+    img {
+        width: 40%;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,31 @@
+:root {
+  --color-header: #ffbf69;
+  --color-header-href: #2ec4b6;
+  --color-primary: #cbf3f0;
+  --color-primary-href: #ff9f1c;
+  --color-primary-background: #ffffff ;
+}
+
+* {
+  color: black;
+}
+
+html, body {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0;
+
+  background-color: var(--color-primary-background);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+#root {
+  width: 100%;
+}
