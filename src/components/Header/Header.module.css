@@ -16,7 +16,7 @@
         font-size: 25px;
     }
 
-    img {
+    img, svg {
         width: 50px;
         border-radius: 50%;
     }
@@ -55,4 +55,18 @@
 
 .logout {
     border-radius: 0 !important;
+}
+
+@media (max-width: 768px) {
+
+    .headerCompanyLogo, .headerUserAvatar {
+        p {
+            font-size: 12px;
+        }
+
+        img, svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
 }
