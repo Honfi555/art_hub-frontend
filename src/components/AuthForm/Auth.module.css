@@ -78,7 +78,7 @@
 
 @media (max-width: 768px) {
     .authForm > div {
-        width: 80%;
+        width: 95%;
 
         p, label {
             font-size: 16px;

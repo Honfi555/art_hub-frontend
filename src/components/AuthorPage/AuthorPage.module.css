@@ -20,3 +20,13 @@
         padding-left: 10%;
     }
 }
+
+@media (max-width: 768px) {
+    .authorInfo {
+        width: 95%;
+
+        p {
+            padding-left: 3%;
+        }
+    }
+}

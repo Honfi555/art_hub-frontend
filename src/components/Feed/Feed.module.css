@@ -82,10 +82,15 @@
     }
 
     .scrollFeed {
-        width: 80%;
+        width: 95%;
     }
 
     .articleAuthor {
         text-indent: 10px;
+    }
+
+    .articleImage {
+        max-width: 100%;
+        max-height: none;
     }
 }

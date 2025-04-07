@@ -38,3 +38,13 @@
         border-radius: 10px;
     }
 }
+
+@media (max-width: 768px) {
+    .article {
+        width: 95%;
+    }
+
+    .articleImages > img {
+        width: 100%;
+    }
+}
