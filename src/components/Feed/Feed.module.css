@@ -32,9 +32,14 @@
 }
 
 .article {
-    background-color: var(--color-primary);
-    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px 10px 10px 10px;
     border-radius: 15px;
+    gap: 5px;
+
+    background-color: var(--color-primary);
 
     div {
         width: 100%;
@@ -45,7 +50,6 @@
 }
 
 .articleTittle {
-    margin: 10px 0;
     padding-left: 40px;
 }
 
@@ -55,7 +59,7 @@
 }
 
 .articleAuthor {
-    margin: 5px 0 0 0;
+    margin: 0;
     text-align: right;
 }
 
@@ -70,8 +74,7 @@
 }
 
 .articleImage {
-    margin-top: 10px;
-    max-width: 80%;
+    max-width: 90%;
     max-height: 30%;
     border-radius: 10px;
 }
