@@ -31,6 +31,17 @@
 }
 
 .descriptionContainer {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.descriptionStrong {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -45,23 +56,22 @@
 
 .descriptionTextArea {
     width: 100%;
-    min-height: 120px;              /* Минимальная высота для удобного ввода текста */
-    padding: 12px;                  /* Внутренние отступы для комфортного чтения */
-    margin: 10px 0;                 /* Отступ сверху и снизу для разделения от соседних элементов */
-    border: 1px solid rgba(255, 255, 255, 0.4);  /* Тонкая рамка с легкой прозрачностью */
-    border-radius: 10px;            /* Скругление углов для согласованности с .AuthorInfoContent */
-    background-color: var(--color-primary);  /* Использование основного цвета темы */
-    font-size: 1rem;                /* Размер шрифта, соответствующий остальным элементам */
-    font-family: inherit;           /* Наследование шрифта от родительского элемента */
-    resize: vertical;               /* Возможность изменения высоты текстового поля */
-    box-sizing: border-box;         /* Учет отступов и границ в общей ширине элемента */
-    outline: none;                  /* Удаление стандартного контура при фокусе */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;  /* Плавный переход для состояний */
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .descriptionTextArea:focus {
-    border-color: rgba(255, 255, 255, 0.7);      /* Усиление рамки при фокусе для лучшего визуального отклика */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);  /* Легкая тень для акцента */
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .descriptionButtons {

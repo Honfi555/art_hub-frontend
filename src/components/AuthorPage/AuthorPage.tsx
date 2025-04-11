@@ -149,8 +149,8 @@ const AuthorPage = () => {
                         <p>
                             <strong>Имя:</strong> {authorInfo[0].authorName}
                         </p>
-                        <div>
-                            <strong className={authorStylesheet.descriptionContainer}>
+                        <div className={authorStylesheet.descriptionContainer}>
+                            <strong className={authorStylesheet.descriptionStrong}>
                                 Описание:
                                 {authorName === cookies.login && !editMode && (
                                     <button className={authorStylesheet.updateDescriptionBtn} onClick={handleUpdateBtnClick}>
