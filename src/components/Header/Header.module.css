@@ -41,13 +41,13 @@
     justify-content: center;
     gap: 15px;
 
-    padding-right: 3%;
+    padding-right: 1.5%;
 
     p {
         font-size: 25px;
     }
 
-    img {
+    img, svg {
         height: 50px;
         border-radius: 50%;
     }
@@ -60,6 +60,8 @@
 @media (max-width: 768px) {
 
     .headerCompanyLogo, .headerUserAvatar {
+        gap: 10px;
+
         p {
             font-size: 12px;
         }

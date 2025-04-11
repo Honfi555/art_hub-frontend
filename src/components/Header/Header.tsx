@@ -38,7 +38,9 @@ const Header = () => {
 
                     </>)}
                 <Link to={'/auth/logout'} className={stylesheet.feedHref}>
-                    <img src="/src/assets/icon-logout-32.png" alt="Logout btn" className={stylesheet.logout} />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={stylesheet.logout}>
+                        <path fill="currentColor" d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59z"/>
+                    </svg>
                 </Link>
             </div>
         </header>
