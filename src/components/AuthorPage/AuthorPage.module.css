@@ -15,10 +15,82 @@
 
     display: flex;
     flex-direction: column;
+}
 
-    p {
-        padding-left: 10%;
+.AuthorInfoContent {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    padding: 0 10px;
+
+    background-color: var(--color-primary);
+    border-radius: 10px;
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.descriptionText {
+    padding-left: 7%;
+}
+
+.descriptionTextArea {
+    width: 100%;
+    min-height: 120px;              /* Минимальная высота для удобного ввода текста */
+    padding: 12px;                  /* Внутренние отступы для комфортного чтения */
+    margin: 10px 0;                 /* Отступ сверху и снизу для разделения от соседних элементов */
+    border: 1px solid rgba(255, 255, 255, 0.4);  /* Тонкая рамка с легкой прозрачностью */
+    border-radius: 10px;            /* Скругление углов для согласованности с .AuthorInfoContent */
+    background-color: var(--color-primary);  /* Использование основного цвета темы */
+    font-size: 1rem;                /* Размер шрифта, соответствующий остальным элементам */
+    font-family: inherit;           /* Наследование шрифта от родительского элемента */
+    resize: vertical;               /* Возможность изменения высоты текстового поля */
+    box-sizing: border-box;         /* Учет отступов и границ в общей ширине элемента */
+    outline: none;                  /* Удаление стандартного контура при фокусе */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;  /* Плавный переход для состояний */
+}
+
+.descriptionTextArea:focus {
+    border-color: rgba(255, 255, 255, 0.7);      /* Усиление рамки при фокусе для лучшего визуального отклика */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);  /* Легкая тень для акцента */
+}
+
+.descriptionButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+
+    button {
+        width: 20px;
+
+        background: none;
+        border: none;
+        outline: none;
+
+        cursor: pointer;
     }
+}
+
+.updateDescriptionBtn {
+    width: 15px;
+    height: 15px;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 @media (max-width: 768px) {
