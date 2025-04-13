@@ -8,11 +8,12 @@ export interface ArticleData {
     articleBody: string;
 }
 
-function useFetchArticles(login?: string) {
+function useFetchArticles(amount?: number, chunk?: number, login?: string) {
     const [articles, setArticles] = useState<ArticleData[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [cookies] = useCookies(['jwt']);
+    let isEmpty: boolean = false;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,10 +26,13 @@ function useFetchArticles(login?: string) {
             setLoading(true);
 
             try {
-                // Если есть login, передаём его в query-параметр ?login=...
-                const url = login
-                    ? `http://${import.meta.env.VITE_API_URL}/feed/articles?login=${login}`
-                    : `http://${import.meta.env.VITE_API_URL}/feed/articles`;
+                let url = `http://${import.meta.env.VITE_API_URL}/feed/articles`;
+
+                let args= "?";
+
+                if (login) args += `?login=${login}`;
+                if (amount && chunk) args += `&amount=${amount}&chunk=${chunk}`;
+                if (args != "?") url += args;
 
                 const response = await fetch(url, {
                     method: 'GET',
@@ -63,9 +67,11 @@ function useFetchArticles(login?: string) {
         };
 
         fetchData();
-    }, [login, cookies.jwt]);
+    }, [login, cookies.jwt, amount, chunk]);
 
-    return { articles, error, loading };
+    if (articles.length === 0) isEmpty = true;
+
+    return { articles, error, loading, isEmpty };
 }
 
 export default useFetchArticles;
