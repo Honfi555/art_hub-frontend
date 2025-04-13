@@ -59,7 +59,7 @@
     }
 
     p > a {
-        color: var(--color-primary-href);
+        color: rgb(var(--color-primary-href));
         text-decoration: none;
     }
 }
@@ -67,7 +67,7 @@
 .authSubmitInput, .authFormCredentialsInput {
     width: 90%;
 
-    border: 2px solid var(--color-primary-href);
+    border: 2px solid rgb(var(--color-primary-href));
     border-radius: 10px;
     background-color: var(--color-header);
 

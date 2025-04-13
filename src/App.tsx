@@ -9,6 +9,7 @@ import Feed from "./components/Feed/Feed.tsx";
 import Header from "./components/Header/Header.tsx";
 import AuthorPage from "./components/AuthorPage/AuthorPage.tsx";
 import ArticlePage from "./components/ArticlePage/ArticlePage.tsx";
+import AddArticle from "./components/ArticleActions/AddArticle.tsx";
 
 const App = () => {
     return (
@@ -36,6 +37,7 @@ const AppContent = () => {
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/author/:authorName" element={<AuthorPage />} />
                 <Route path="/article/:articleId" element={<ArticlePage />} />
+                <Route path="/article/add_article" element={<AddArticle />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

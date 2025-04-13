@@ -36,13 +36,13 @@ const ArticlePreview: FC<ArticlePreviewProps> = ({ article }) => {
             ) : images.length > 0 ? (
                 <div>
                     <img
-                        src={`data:image/jpeg;base64,${images[0]}`}
+                        src={`data:image/jpeg;base64,${images[0].image}`}
                         alt={`Изображение статьи ${article.id}`}
                         className={stylesheet.articleImage} // добавьте стили по необходимости
                     />
                 </div>
             ) : (
-                <p>Изображение отсутствует</p>
+                <></>
             )}
         </article>
     );

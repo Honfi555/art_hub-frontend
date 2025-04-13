@@ -1,0 +1,230 @@
+.articleActionsPage {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.inputArticleContainer {
+    width: 50%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 15px 10px;
+}
+
+.inputArticleDataForm {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 20px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--color-primary);
+    border-radius: 10px 10px 0 0;
+
+    gap: 15px;
+}
+
+.articlePartContainer {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.articleBodyContainer {
+    flex-direction: column;
+    align-items: start;
+
+    gap: 5px;
+}
+
+.articlePartName {
+    text-indent: 20px;
+}
+
+.articleDataInput {
+    width: 100%;
+
+    padding: 3px;
+
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    background-color: var(--color-primary);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    border-radius: 5px;
+}
+
+.articleDataTextarea {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 50px;
+    height: auto;
+    resize: vertical;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    background-color: var(--color-primary);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    border-radius: 10px;
+}
+
+.addArticleButton, .articleDeleteImage {
+    width: 40%;
+
+    padding: 5px 0;
+
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    background-color: var(--color-primary);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    border-radius: 5px;
+}
+
+.articleDataTextarea:focus, .articleDataInput:focus, .addArticleButton:hover,
+.articleDeleteImage:hover {
+    border-color: rgba(var(--color-primary-href), 0.7);
+    box-shadow: 0 0 8px rgba(var(--color-primary-href), 0.5);
+}
+
+.inputArticleImagesContainer {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0 10px 20px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--color-primary);
+    border-radius: 0 0 10px 10px;
+
+    gap: 15px;
+}
+
+.selectedImagesWrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.selectedImages {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+.imagePreview {
+    max-width: 30%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+}
+
+.articleImage {
+    max-width: 100%;
+    max-height: 40vh;
+    border-radius: 10px;
+}
+
+.articleDeleteImage {
+    width: 100%;
+
+    font-weight: bold;
+}
+
+.inputArticleImagesContainer p.error {
+    color: red;
+    font-size: 1rem;
+}
+
+.selectImageLabel {
+    position: relative;
+    display: inline-block;
+}
+.selectImageLabel span {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+
+    margin: 0;
+    padding: 10px;
+
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+
+    background-color: transparent;
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    border-radius: 5px;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.selectImageLabel input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+/* Hover/active */
+.selectImageLabel:hover span {
+    border-color: rgba(var(--color-primary-href), 0.7);
+    box-shadow: 0 0 8px rgba(var(--color-primary-href), 0.5);
+}
+
+@media (max-width: 768px) {
+    .inputArticleContainer {
+        width: 95%;
+    }
+}

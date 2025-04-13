@@ -14,7 +14,8 @@
     "react": "^19.0.0",
     "react-cookie": "^8.0.1",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^6.30.0"
+    "react-router-dom": "^6.30.0",
+    "react-textarea-autosize": "^8.5.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

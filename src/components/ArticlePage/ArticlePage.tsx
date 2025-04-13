@@ -98,13 +98,13 @@ const ArticlePage = () => {
                         {images.map((img, index) => (
                             <img
                                 key={index}
-                                src={`data:image/jpeg;base64,${img}`}
+                                src={`data:image/jpeg;base64,${img.image}`}
                                 alt={`Изображение ${index + 1}`}
                             />
                         ))}
                     </section>
                 ) : (
-                    <p>Нет изображений для этой статьи.</p>
+                    <></>
                 )}
             </article>
         </main>

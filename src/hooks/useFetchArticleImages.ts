@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
+interface Image {
+    id: number;
+    image: string;
+}
+
 interface UseFetchArticleImagesResult {
-    images: string[];
+    images: Image[];
     loading: boolean;
     error: string;
 }
 
 const useFetchArticleImages = (articleId: string, maxAmount: number | null = null): UseFetchArticleImagesResult => {
     const [cookies] = useCookies(['jwt']);
-    const [images, setImages] = useState<string[]>([]);
+    const [images, setImages] = useState<Image[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const jwt = cookies.jwt;
@@ -40,7 +45,12 @@ const useFetchArticleImages = (articleId: string, maxAmount: number | null = nul
                     throw new Error("Ошибка при получении изображений статьи");
                 }
                 const data = await response.json();
-                setImages(data.images);
+                const mappedImages = data.images.map((item: Image[]) => ({
+                    id: item[0],
+                    image: item[1],
+                }));
+
+                setImages(mappedImages);
             } catch (err) {
                 if (err instanceof Error) {
                     setError(err.message);

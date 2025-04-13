@@ -5,6 +5,7 @@ import useFetchArticles from "../../hooks/useFetchArticles";
 import ArticlePreview from "../Feed/ArticlePreview";
 import authorStylesheet from "./AuthorPage.module.css";
 import feedStylesheet from "../Feed/Feed.module.css";
+import TextareaAutosize from "react-textarea-autosize";
 
 interface AuthorInfo {
     id: number;
@@ -96,13 +97,13 @@ const AuthorPage = () => {
         setEditMode(true);
     };
 
-    // Отмена редактирования
+    // Отмена редактирования профиля
     const handleCancelEdit = () => {
         setEditMode(false);
         setNewDescription("");
     };
 
-    // Подтверждение редактирования и отправка на сервер
+    // Подтверждение редактирования описания профиля и отправка на сервер
     const handleAcceptEdit = async () => {
         try {
             const response = await fetch(
@@ -136,6 +137,10 @@ const AuthorPage = () => {
         }
     };
 
+    const handleAddArticleBtnClick = () => {
+        navigate('/article/add_article');
+    }
+
     return (
         <main className={authorStylesheet.authorPage}>
             {loading && <p>Загрузка...</p>}
@@ -163,7 +168,7 @@ const AuthorPage = () => {
                             {/* Показываем поле редактирования, если включён режим редактирования */}
                             {editMode ? (
                                 <>
-                                    <textarea
+                                    <TextareaAutosize
                                         value={newDescription}
                                         onChange={(e) => setNewDescription(e.target.value)}
                                         className={authorStylesheet.descriptionTextArea}
@@ -188,6 +193,13 @@ const AuthorPage = () => {
                             )}
                         </div>
                     </div>
+                    {authorName === cookies.login ? (
+                        <button className={authorStylesheet.addArticleBtn} onClick={handleAddArticleBtnClick}>
+                            Добавить статью
+                        </button>
+                    ) : (
+                        <></>
+                    )}
                 </section>
             )}
 

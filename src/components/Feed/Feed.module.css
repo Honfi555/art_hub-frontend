@@ -29,6 +29,11 @@
     flex-direction: column;
 
     gap: 10px;
+
+    h2 {
+        margin: 0;
+        padding-bottom: 10px;
+    }
 }
 
 .article {
@@ -69,7 +74,7 @@
 
 .authorHref {
     text-decoration: none;
-    color: var(--color-primary-href);
+    color: rgb(var(--color-primary-href));
     cursor: pointer;
 }
 
