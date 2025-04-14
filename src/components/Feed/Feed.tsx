@@ -23,23 +23,23 @@ const Feed = () => {
     }, [error, navigate]);
 
     useEffect(() => {
-        if (!loading && (articles.length !== 0)) {
+        if (articles.length !== 0) {
             setAllArticles(prev => [...prev, ...articles]);
             if (articles.length < 10) {
                 setHasMore(false);
             }
         }
-    }, [articles, loading]);
+    }, [articles]);
 
     const handleScroll = useCallback(() => {
-        if (loading || !hasMore) return;
+        if (!hasMore) return;
         const scrollTop = window.scrollY;
         const clientHeight = window.innerHeight;
         const scrollHeight = document.documentElement.scrollHeight;
-        if (scrollHeight - scrollTop <= clientHeight + 50) {
+        if (scrollHeight - scrollTop <= clientHeight + 100) {
             setPage(prev => prev + 1);
         }
-    }, [loading, hasMore]);
+    }, [hasMore]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);

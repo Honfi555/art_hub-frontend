@@ -98,7 +98,7 @@ const ArticlePage = () => {
                         {images.map((img, index) => (
                             <img
                                 key={index}
-                                src={`data:image/jpeg;base64,${img.image}`}
+                                src={img.imageUrl}
                                 alt={`Изображение ${index + 1}`}
                             />
                         ))}

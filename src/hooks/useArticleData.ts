@@ -19,7 +19,7 @@ const useArticleData = (articleId?: string) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!articleId) return; // Если отсутствует id, запрос не выполняется
+        if (!articleId) return;
 
         if (!jwt) {
             setError("Отсутствует JWT токен. Пожалуйста, выполните вход.");

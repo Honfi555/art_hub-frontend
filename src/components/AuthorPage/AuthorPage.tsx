@@ -29,7 +29,7 @@ const AuthorPage = () => {
         articles: authorArticles,
         error: articlesError,
         loading: articlesLoading
-    } = useFetchArticles(authorName);
+    } = useFetchArticles(null, null ,authorName);
 
     useEffect(() => {
         const fetchAuthorInfo = async () => {

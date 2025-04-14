@@ -8,7 +8,7 @@ export interface ArticleData {
     articleBody: string;
 }
 
-function useFetchArticles(amount?: number, chunk?: number, login?: string) {
+function useFetchArticles(amount?: number | null, chunk?: number | null, login?: string) {
     const [articles, setArticles] = useState<ArticleData[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -54,6 +54,8 @@ function useFetchArticles(amount?: number, chunk?: number, login?: string) {
                     articleBody: item[3],
                 }));
 
+                if (mappedArticles.length === 0) isEmpty = true;
+
                 setArticles(mappedArticles);
             } catch (err) {
                 if (err instanceof Error) {
@@ -68,8 +70,6 @@ function useFetchArticles(amount?: number, chunk?: number, login?: string) {
 
         fetchData();
     }, [login, cookies.jwt, amount, chunk]);
-
-    if (articles.length === 0) isEmpty = true;
 
     return { articles, error, loading, isEmpty };
 }
