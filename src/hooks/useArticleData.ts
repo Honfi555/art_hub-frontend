@@ -31,7 +31,7 @@ const useArticleData = (articleId?: string) => {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `http://${import.meta.env.VITE_API_URL}/article_full?article_id=${articleId}`,
+                    `${import.meta.env.VITE_API_URL}/article_full?article_id=${articleId}`,
                     {
                         method: "GET",
                         headers: {

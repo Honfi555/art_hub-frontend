@@ -1,36 +1,57 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 
-const useRemoveArticleImages = () => {
+interface UseRemoveArticleImagesResult {
+    removeImages: (articleId: string, imageIds: string[]) => Promise<string[]>;
+    loading: boolean;
+    error: string | null;
+}
+
+const useRemoveArticleImages = (): UseRemoveArticleImagesResult => {
     const [cookies] = useCookies(["jwt"]);
     const jwt = cookies.jwt;
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
-    const removeImages = async (imageIds: number[]): Promise<void> => {
+    const removeImages = async (
+        articleId: string,
+        imageIds: string[]
+    ): Promise<string[]> => {
         if (!jwt) {
-            setError("Отсутствует JWT токен. Пожалуйста, выполните вход.");
-            return;
+            const msg = "Отсутствует JWT токен. Пожалуйста, выполните вход.";
+            setError(msg);
+            throw new Error(msg);
         }
+
         setLoading(true);
+        setError(null);
+
         try {
-            const response = await fetch(`http://${import.meta.env.VITE_API_URL}/feed/remove_images`, {
+            const base = import.meta.env.VITE_IMAGES_URL;
+            const url = `${base}/remove_images?article_id=${articleId}`;
+            const res = await fetch(url, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${jwt}`
+                    Authorization: `Bearer ${jwt}`,
                 },
-                body: JSON.stringify({ image_ids: imageIds })
+                body: JSON.stringify(imageIds),
             });
-            if (!response.ok) {
-                throw new Error("Ошибка при удалении изображений");
+
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(`Ошибка ${res.status}: ${text || res.statusText}`);
             }
-        } catch (err) {
-            if (err instanceof Error) {
-                setError(err.message);
-            } else {
-                setError("Произошла неизвестная ошибка при удалении изображений");
-            }
+
+            const data = (await res.json()) as { deleted_image_ids: string[] };
+            return data.deleted_image_ids;
+        } catch (err: unknown) {
+            const msg =
+                err instanceof Error
+                    ? err.message
+                    : "Произошла неизвестная ошибка при удалении изображений";
+            setError(msg);
+            throw new Error(msg);
         } finally {
             setLoading(false);
         }

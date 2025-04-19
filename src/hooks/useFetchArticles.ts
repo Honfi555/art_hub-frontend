@@ -26,13 +26,16 @@ function useFetchArticles(amount?: number | null, chunk?: number | null, login?:
             setLoading(true);
 
             try {
-                let url = `http://${import.meta.env.VITE_API_URL}/feed/articles`;
+                let url = `${import.meta.env.VITE_API_URL}/feed/articles`;
 
                 let args= "?";
 
-                if (login) args += `?login=${login}`;
-                if (amount && chunk) args += `&amount=${amount}&chunk=${chunk}`;
-                if (args != "?") url += args;
+                if (login) args += `login=${login}`;
+                if (amount && chunk) {
+                    if (args !== "?") args += "&"
+                    args += `amount=${amount}&chunk=${chunk}`;
+                }
+                if (args !== "?") url += args;
 
                 const response = await fetch(url, {
                     method: 'GET',

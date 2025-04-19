@@ -1,36 +1,58 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 
-const useUploadArticleImages = () => {
+interface UseUploadArticleImagesResult {
+    uploadImages: (articleId: string, images: string[]) => Promise<string[]>;
+    loading: boolean;
+    error: string | null;
+}
+
+const useUploadArticleImages = (): UseUploadArticleImagesResult => {
     const [cookies] = useCookies(["jwt"]);
     const jwt = cookies.jwt;
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
-    const uploadImages = async (articleId: number, images: string[]): Promise<void> => {
+    const uploadImages = async (
+        articleId: string,
+        images: string[]
+    ): Promise<string[]> => {
         if (!jwt) {
-            setError("Отсутствует JWT токен. Пожалуйста, выполните вход.");
-            return;
+            const msg = "Отсутствует JWT токен. Пожалуйста, выполните вход.";
+            setError(msg);
+            throw new Error(msg);
         }
+
         setLoading(true);
+        setError(null);
+
         try {
-            const response = await fetch(`http://${import.meta.env.VITE_API_URL}/feed/add_images`, {
+            const base = import.meta.env.VITE_IMAGES_URL;
+            const url = `${base}/add_images?article_id=${articleId}`;
+            const res = await fetch(url, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${jwt}`
+                    Authorization: `Bearer ${jwt}`,
                 },
-                body: JSON.stringify({ article_id: articleId, images })
+                // тело — чистый массив base64-строк
+                body: JSON.stringify(images),
             });
-            if (!response.ok) {
-                throw new Error("Ошибка при загрузке изображений");
+
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(`Ошибка ${res.status}: ${text || res.statusText}`);
             }
-        } catch (err) {
-            if (err instanceof Error) {
-                setError(err.message);
-            } else {
-                setError("Произошла неизвестная ошибка при загрузке изображений");
-            }
+
+            const data = (await res.json()) as { created_image_ids: string[] };
+            return data.created_image_ids;
+        } catch (err: unknown) {
+            const msg =
+                err instanceof Error
+                    ? err.message
+                    : "Произошла неизвестная ошибка при загрузке изображений";
+            setError(msg);
+            throw new Error(msg);
         } finally {
             setLoading(false);
         }
