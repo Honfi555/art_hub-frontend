@@ -17,7 +17,7 @@ const SignUpForm = () => {
         setError('');
 
         try {
-            const response = await fetch(`http://${import.meta.env.VITE_API_URL}/auth/sign_up`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/sign_up`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

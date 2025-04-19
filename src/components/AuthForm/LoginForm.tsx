@@ -17,7 +17,7 @@ const LoginForm = () => {
         setError('');
 
         try {
-            const response = await fetch(`http://${import.meta.env.VITE_API_URL}/auth/sign_in`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/sign_in`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -39,7 +39,7 @@ const AddArticle = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch(`http://${import.meta.env.VITE_API_URL}/feed/add_article`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/feed/add_article`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

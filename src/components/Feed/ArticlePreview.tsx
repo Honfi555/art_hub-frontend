@@ -15,7 +15,7 @@ interface ArticlePreviewProps {
 }
 
 const ArticlePreview: FC<ArticlePreviewProps> = ({ article }) => {
-    const { images, loading, error } = useFetchArticleImages(article.id.toString(), 1);
+    const { images, loading, error } = useFetchArticleImages(article.id.toString(), true);
 
     return (
         <article className={stylesheet.article}>
