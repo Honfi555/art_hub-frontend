@@ -204,7 +204,7 @@ const AuthorPage = () => {
             <Feed
                 author={authorName}
                 title={`Статьи автора ${authorName}`}
-                pageSize={5}            // если нужно своё число статей на страницу
+                pageSize={5}            // если нужно своё число статей на страниц
             />
         </main>
     );
