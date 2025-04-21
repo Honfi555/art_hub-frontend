@@ -51,7 +51,6 @@ const AddArticle = () => {
                 throw new Error("Ошибка при создании статьи");
             }
             const newArticle = await response.json();
-            console.log("newArticle ", newArticle);
             const articleId = newArticle.article_id;
 
             // Если есть изображения для загрузки, отправляем их с articleId

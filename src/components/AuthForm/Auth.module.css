@@ -30,6 +30,7 @@
     align-items: center;
 
     h1 {
+        text-align: center;
         margin: 5px;
     }
 }
@@ -67,18 +68,22 @@
 .authSubmitInput, .authFormCredentialsInput {
     width: 90%;
 
+    display: block;
+    box-sizing: border-box;
+
+    padding: 0 7px;
+
     border: 2px solid rgb(var(--color-primary-href));
     border-radius: 10px;
     background-color: var(--color-header);
 
-    padding: 0 7px;
-
+    font: inherit;
     font-size: var(--font-size);
 }
 
 @media (max-width: 768px) {
     .authForm > div {
-        width: 95%;
+        width: 90%;
 
         p, label {
             font-size: 16px;

@@ -10,6 +10,7 @@ import Header from "./components/Header/Header.tsx";
 import AuthorPage from "./components/AuthorPage/AuthorPage.tsx";
 import ArticlePage from "./components/ArticlePage/ArticlePage.tsx";
 import AddArticle from "./components/ArticleActions/AddArticle.tsx";
+import UpdateArticle from "./components/ArticleActions/UpdateArticle.tsx";
 
 const App = () => {
     return (
@@ -38,6 +39,7 @@ const AppContent = () => {
                 <Route path="/author/:authorName" element={<AuthorPage />} />
                 <Route path="/article/:articleId" element={<ArticlePage />} />
                 <Route path="/article/add_article" element={<AddArticle />} />
+                <Route path="/article/update_article/:articleId" element={<UpdateArticle />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import {useCookies} from "react-cookie";
-import useFetchArticles from "../../hooks/useFetchArticles";
-import ArticlePreview from "../Feed/ArticlePreview";
-import authorStylesheet from "./AuthorPage.module.css";
-import feedStylesheet from "../Feed/Feed.module.css";
+
 import TextareaAutosize from "react-textarea-autosize";
+import Feed from "../Feed/Feed.tsx";
+import authorStylesheet from "./AuthorPage.module.css";
 
 interface AuthorInfo {
     id: number;
@@ -24,12 +23,6 @@ const AuthorPage = () => {
     // Дополнительное состояние для редактирования описания
     const [editMode, setEditMode] = useState(false);
     const [newDescription, setNewDescription] = useState("");
-
-    const {
-        articles: authorArticles,
-        error: articlesError,
-        loading: articlesLoading
-    } = useFetchArticles(null, null, authorName);
 
     useEffect(() => {
         const fetchAuthorInfo = async () => {
@@ -81,13 +74,6 @@ const AuthorPage = () => {
         fetchAuthorInfo();
     }, [cookies.jwt, navigate, authorName]);
 
-    // Если отсутствует JWT, перенаправляем на страницу входа
-    useEffect(() => {
-        if (articlesError === "Отсутствует JWT токен. Пожалуйста, выполните вход.") {
-            navigate("/auth/login");
-        }
-    }, [articlesError, navigate]);
-
     // Обработчик клика по кнопке редактирования описания
     const handleUpdateBtnClick = () => {
         // подставляем текущее описание в поле редактирования
@@ -136,10 +122,6 @@ const AuthorPage = () => {
             setError(error.message);
         }
     };
-
-    const handleAddArticleBtnClick = () => {
-        navigate('/article/add_article');
-    }
 
     return (
         <main className={authorStylesheet.authorPage}>
@@ -207,7 +189,9 @@ const AuthorPage = () => {
                         </div>
                     </div>
                     {authorName === cookies.login ? (
-                        <button className={authorStylesheet.addArticleBtn} onClick={handleAddArticleBtnClick}>
+                        <button className={authorStylesheet.addArticleBtn} onClick={() => {
+                            navigate('/article/add_article');
+                        }}>
                             Добавить статью
                         </button>
                     ) : (
@@ -217,20 +201,11 @@ const AuthorPage = () => {
             )}
 
             {/* Статьи автора */}
-            {articlesLoading && <p>Загрузка статей...</p>}
-            {articlesError && <p style={{color: "red"}}>{articlesError}</p>}
-            {!articlesLoading && !articlesError && (
-                <section className={feedStylesheet.scrollFeed}>
-                    <h2>Статьи автора</h2>
-                    {authorArticles.length > 0 ? (
-                        authorArticles.map((article) => (
-                            <ArticlePreview key={article.id} article={article}/>
-                        ))
-                    ) : (
-                        <p>У автора пока нет статей.</p>
-                    )}
-                </section>
-            )}
+            <Feed
+                author={authorName}
+                title={`Статьи автора ${authorName}`}
+                pageSize={5}            // если нужно своё число статей на страницу
+            />
         </main>
     );
 };

@@ -1,36 +1,59 @@
-import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import useFetchArticles, { ArticleData } from "../../hooks/useFetchArticles";
-import ArticlePreview from "./ArticlePreview";
-import stylesheet from "./Feed.module.css";
+// components/Feed/Feed.tsx
+import { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useFetchArticles, { ArticleData } from '../../hooks/useFetchArticles';
+import ArticlePreview from './ArticlePreview';
+import stylesheet from './Feed.module.css';
 
-const Feed = () => {
+interface FeedProps {
+    /** Заголовок ленты (по‑умолчанию "Лента") */
+    title?: string;
+    /** Имя автора для фильтра (undefined → все статьи) */
+    author?: string;
+    /** Размер страницы (по‑умолчанию 10) */
+    pageSize?: number;
+}
+
+const Feed: React.FC<FeedProps> = ({
+                                       title = 'Лента',
+                                       author,
+                                       pageSize = 10,
+                                   }) => {
     const navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [allArticles, setAllArticles] = useState<ArticleData[]>([]);
     const [hasMore, setHasMore] = useState(true);
 
-    const { articles, error, loading, isEmpty } = useFetchArticles(10, page);
+    // Подставляем author при вызове
+    const { articles, error, loading, isEmpty } = useFetchArticles(
+        pageSize,
+        page,
+        author
+    );
 
+    // Когда бекенд скажет, что больше нет данных
     useEffect(() => {
         if (isEmpty) setHasMore(false);
     }, [isEmpty]);
 
+    // Перехват ошибки авторизации
     useEffect(() => {
         if (error === 'Отсутствует JWT токен. Пожалуйста, выполните вход.') {
             navigate('/auth/login');
         }
     }, [error, navigate]);
 
+    // Накатываем следующую порцию статей
     useEffect(() => {
         if (articles.length !== 0) {
             setAllArticles(prev => [...prev, ...articles]);
-            if (articles.length < 10) {
+            if (articles.length < pageSize) {
                 setHasMore(false);
             }
         }
-    }, [articles]);
+    }, [articles, pageSize]);
 
+    // Инфинити‑скролл
     const handleScroll = useCallback(() => {
         if (!hasMore) return;
         const scrollTop = window.scrollY;
@@ -42,13 +65,13 @@ const Feed = () => {
     }, [hasMore]);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]);
 
     return (
         <main className={stylesheet.feedForm}>
-            <h2 className={stylesheet.feedTittle}>Лента</h2>
+            <h2 className={stylesheet.feedTittle}>{title}</h2>
             {loading && <p className={stylesheet.loadingMessage}>Загрузка...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <section className={stylesheet.scrollFeed}>

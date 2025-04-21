@@ -42,7 +42,6 @@ const useRemoveArticleImages = (): UseRemoveArticleImagesResult => {
                 const text = await res.text();
                 throw new Error(`Ошибка ${res.status}: ${text || res.statusText}`);
             }
-
             const data = (await res.json()) as { deleted_image_ids: string[] };
             return data.deleted_image_ids;
         } catch (err: unknown) {

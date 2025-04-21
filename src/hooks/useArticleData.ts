@@ -31,7 +31,7 @@ const useArticleData = (articleId?: string) => {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/article_full?article_id=${articleId}`,
+                    `${import.meta.env.VITE_API_URL}/feed/article_full?article_id=${articleId}`,
                     {
                         method: "GET",
                         headers: {
@@ -44,13 +44,13 @@ const useArticleData = (articleId?: string) => {
                     throw new Error("Ошибка при получении данных статьи");
                 }
                 const data = await response.json();
-                // Предполагаем, что API возвращает объект с нужными полями
+
                 const articleData: ArticleData = {
-                    id: data.id,
-                    title: data.title,
-                    userName: data.userName,
-                    announcement: data.announcement,
-                    articleBody: data.articleBody
+                    id: data.article[0],
+                    title: data.article[1],
+                    userName: data.article[2],
+                    announcement: data.article[3],
+                    articleBody: data.article[4]
                 };
                 setArticle(articleData);
             } catch (err) {
