@@ -34,14 +34,91 @@
     gap: 15px;
 }
 
+.rightContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+
+    padding-right: 1.5%;
+}
+
+/* Контейнер для позиционирования дропдауна */
+.searchContainer {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.searchInput {
+    text-indent: 4px;
+    padding: 3px;
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.searchInput:focus {
+    border-color: rgba(var(--color-primary-href), 0.7);
+    box-shadow: 0 0 8px rgba(var(--color-primary-href), 0.5);
+}
+
+/* Выпадающий список */
+.searchDropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--color-primary);
+    border: 1px solid rgba(var(--color-primary-href), 0.4);
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/* Элемент списка */
+.searchItem {
+    list-style: none;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(var(--color-primary-href), 0.2);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.searchItem:last-child {
+    border-bottom: none;
+}
+.searchItem:hover {
+    background-color: rgba(var(--color-primary-href), 0.1);
+}
+
+/* Ссылка внутри элемента */
+.searchLink {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Название статьи */
+.searchLink strong {
+    font-weight: 500;
+    font-size: 20px;
+}
+
 .headerUserAvatar {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 15px;
-
-    padding-right: 1.5%;
 
     p {
         font-size: 25px;
@@ -59,10 +136,10 @@
 
 @media (max-width: 768px) {
 
-    .headerCompanyLogo, .headerUserAvatar {
+    .headerCompanyLogo, .headerUserAvatar, .searchContainer {
         gap: 10px;
 
-        p {
+        p, input, li, strong {
             font-size: 12px;
         }
 

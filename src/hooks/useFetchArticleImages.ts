@@ -34,6 +34,8 @@ const useFetchArticleImages = (
             return;
         }
 
+        setImages([]);
+
         const fetchImages = async () => {
             setLoading(true);
             setError(null);
