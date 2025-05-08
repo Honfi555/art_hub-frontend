@@ -13,7 +13,6 @@ import UpdateArticle from "./components/ArticleActions/UpdateArticle.tsx";
 import AuthorContext from './contexts/AuthorContext.tsx';
 import FeedContainer from "./components/Feed/FeedContainer.tsx";
 import SearchContainer from "./components/Feed/SearchContainer.tsx";
-import Test from "./components/Feed/Test.tsx";
 
 const App = () => {
     return (
@@ -48,7 +47,6 @@ const AppContent = () => {
                 <Route path="/article/add_article" element={<AddArticle/>}/>
                 <Route path="/article/update_article/:articleId" element={<UpdateArticle/>}/>
                 <Route path="/feed/search_result/:query" element={<SearchContainer/>}/>
-                <Route path={"/test"} element={<Test />} />
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </AuthorContext.Provider>
