@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef, ChangeEvent, KeyboardEvent} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useSearchArticles, {ArticleSearchResult} from "../../hooks/useSearchArticles";
 import stylesheet from "./Header.module.css";
 import {useAuthor} from "../../contexts/UseAuthor.tsx";
@@ -7,6 +7,7 @@ import {useAuthor} from "../../contexts/UseAuthor.tsx";
 const DEBOUNCE_DELAY = 500; // мс
 
 const SearchInput = () => {
+    const navigate = useNavigate();
     const [query, setQuery] = useState("");
     const [debouncedQuery, setDebouncedQuery] = useState(query);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -49,7 +50,7 @@ const SearchInput = () => {
 
     const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            flushQuery();
+            navigate(`/feed/search_result/${query}`);
         }
     };
 

@@ -9,6 +9,7 @@ import useRemoveArticleImages from "../../hooks/useRemoveArticleImages.ts";
 import useUploadArticleImages from "../../hooks/useUploadArticleImages.ts";
 
 import stylesheet from "./ArticleActions.module.css";
+import Loading from "../Loading/Loading.tsx";
 
 interface Image {
     id: string;
@@ -149,7 +150,7 @@ const UpdateArticle: FC = () => {
     };
 
     // 7) Рендер
-    if (loadingArticle) return <p>Загрузка данных статьи…</p>;
+    if (loadingArticle) return <Loading loading={loadingArticle} />;
     if (errorArticle) return <p style={{ color: "red" }}>{errorArticle}</p>;
 
     return (
@@ -208,7 +209,7 @@ const UpdateArticle: FC = () => {
             <section className={stylesheet.inputArticleImagesContainer}>
                 <h3>Текущие изображения</h3>
                 {loadingFetchImages || loadingRemove ? (
-                    <p>Обработка изображений…</p>
+                    <Loading loading={loadingFetchImages || loadingRemove}/>
                 ) : errorFetchImages || errorRemove ? (
                     <p style={{ color: "red" }}>{errorFetchImages || errorRemove}</p>
                 ) : (

@@ -32,7 +32,7 @@ const Header = () => {
 
                 <div className={stylesheet.headerUserAvatar}>
                     {cookies.login ? (
-                        <Link to={`/author/${cookies.login}`} className={stylesheet.feedHref}>
+                        <Link to={`/feed/author/${cookies.login}`} className={stylesheet.feedHref}>
                             <p>{cookies.login}</p>
                             <img
                                 src="https://avatars.mds.yandex.net/i?id=9098ee8c7e854910f612d55b443bcaaec0e0cc8b-5088908-images-thumbs&n=13"

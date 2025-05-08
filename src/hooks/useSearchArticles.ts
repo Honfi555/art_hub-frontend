@@ -6,17 +6,24 @@ export interface ArticleSearchResult {
     article_id: number;
     title: string;
     login: string;
+    announcement?: string;
     score: number;
 }
 
 interface UseSearchArticlesOptions {
     query: string;
     login?: string | null;
+    amount?: number;
+    chunk?: number;
+    announcement?: boolean
 }
 
 const useSearchArticles = ({
                                query,
-                               login,
+                               login = null,
+                               amount = 5,
+                               chunk = 1,
+                               announcement = false,
                            }: UseSearchArticlesOptions) => {
     const [results, setResults] = useState<ArticleSearchResult[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -25,6 +32,7 @@ const useSearchArticles = ({
     const [cookies] = useCookies(["jwt"]);
     const jwt = cookies.jwt;
     const navigate = useNavigate();
+    let isEmpty: boolean = false;
 
     useEffect(() => {
         // Не дергаем, пока нет обязательного параметра
@@ -48,12 +56,12 @@ const useSearchArticles = ({
                 // Составляем query string
                 const params = new URLSearchParams();
                 params.append("query", query);
-                params.append("amount", String(5));
-                params.append("chunk", String(1));
+                params.append("amount", amount?.toString());
+                params.append("chunk", chunk?.toString());
                 if (login) {
                     params.append("login", login);
                 }
-                console.log(`login: ${login}; params: ${params}`);
+                params.append("announcement", `${announcement}`);
 
                 const url = `${import.meta.env.VITE_API_URL}/feed/search_articles?${params.toString()}`;
                 const response = await fetch(url, {
@@ -74,6 +82,8 @@ const useSearchArticles = ({
                     throw new Error("Сервер вернул успех=false");
                 }
 
+                if (payload.results.length === 0) isEmpty = true;
+
                 setResults(payload.results as ArticleSearchResult[]);
             } catch (err) {
                 if (err instanceof Error) {
@@ -87,9 +97,9 @@ const useSearchArticles = ({
         };
 
         fetchSearch();
-    }, [query, login, jwt, navigate]);
+    }, [query, login, jwt, navigate, amount, chunk]);
 
-    return {results, loading, error};
+    return {results, loading, error, isEmpty};
 };
 
 export default useSearchArticles;

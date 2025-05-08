@@ -3,9 +3,10 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useCookies} from "react-cookie";
 
 import TextareaAutosize from "react-textarea-autosize";
-import Feed from "../Feed/Feed.tsx";
 import AuthorContext from "../../contexts/AuthorContext.tsx";
 import authorStylesheet from "./AuthorPage.module.css";
+import Loading from "../Loading/Loading.tsx";
+import FeedContainer from "../Feed/FeedContainer.tsx";
 
 interface AuthorInfo {
     id: number;
@@ -127,7 +128,7 @@ const AuthorPage = () => {
     return (
         <AuthorContext.Provider value={{authorName}}>
             <main className={authorStylesheet.authorPage}>
-                {loading && <p>Загрузка...</p>}
+                <Loading loading={loading} />
                 {error && <p>{error}</p>}
 
                 {/* Информация об авторе */}
@@ -204,10 +205,8 @@ const AuthorPage = () => {
                 )}
 
                 {/* Статьи автора */}
-                <Feed
-                    author={authorName}
-                    title={`Статьи автора ${authorName}`}
-                    pageSize={5}            // если нужно своё число статей на страниц
+                <FeedContainer
+                    authorName={authorName}
                 />
             </main>
         </AuthorContext.Provider>
