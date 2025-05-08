@@ -18,7 +18,7 @@ const useUploadArticleImages = (): UseUploadArticleImagesResult => {
         images: string[]
     ): Promise<string[]> => {
         if (!jwt) {
-            const msg = "Отсутствует JWT токен. Пожалуйста, выполните вход.";
+            const msg = "Отсутствует JWT. Пожалуйста, выполните вход.";
             setError(msg);
             throw new Error(msg);
         }

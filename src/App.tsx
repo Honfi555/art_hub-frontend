@@ -5,13 +5,14 @@ import LoginForm from './components/AuthForm/LoginForm.tsx';
 import SignUpForm from './components/AuthForm/SignUpForm.tsx';
 import Logout from "./components/AuthForm/Logout.tsx";
 import NotFound from "./components/NotFound/NotFound.tsx";
-import Feed from "./components/Feed/Feed.tsx";
 import Header from "./components/Header/Header.tsx";
 import AuthorPage from "./components/AuthorPage/AuthorPage.tsx";
 import ArticlePage from "./components/ArticlePage/ArticlePage.tsx";
 import AddArticle from "./components/ArticleActions/AddArticle.tsx";
 import UpdateArticle from "./components/ArticleActions/UpdateArticle.tsx";
 import AuthorContext from './contexts/AuthorContext.tsx';
+import FeedContainer from "./components/Feed/FeedContainer.tsx";
+import SearchContainer from "./components/Feed/SearchContainer.tsx";
 
 const App = () => {
     return (
@@ -40,11 +41,12 @@ const AppContent = () => {
                 <Route path="/auth/login" element={<LoginForm/>}/>
                 <Route path="/auth/sign_up" element={<SignUpForm/>}/>
                 <Route path="/auth/logout" element={<Logout/>}/>
-                <Route path="/feed" element={<Feed/>}/>
-                <Route path="/author/:authorName" element={<AuthorPage/>}/>
+                <Route path="/feed" element={<FeedContainer/>}/>
+                <Route path="/feed/author/:authorName" element={<AuthorPage/>}/>
                 <Route path="/article/:articleId" element={<ArticlePage/>}/>
                 <Route path="/article/add_article" element={<AddArticle/>}/>
                 <Route path="/article/update_article/:articleId" element={<UpdateArticle/>}/>
+                <Route path="/feed/search_result/:query" element={<SearchContainer/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </AuthorContext.Provider>

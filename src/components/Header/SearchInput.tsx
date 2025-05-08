@@ -1,12 +1,14 @@
 import {useState, useEffect, useRef, ChangeEvent, KeyboardEvent} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useSearchArticles, {ArticleSearchResult} from "../../hooks/useSearchArticles";
 import stylesheet from "./Header.module.css";
 import {useAuthor} from "../../contexts/UseAuthor.tsx";
+import SearchInputLoading from "./SearchInputLoading.tsx";
 
 const DEBOUNCE_DELAY = 500; // мс
 
 const SearchInput = () => {
+    const navigate = useNavigate();
     const [query, setQuery] = useState("");
     const [debouncedQuery, setDebouncedQuery] = useState(query);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -49,7 +51,7 @@ const SearchInput = () => {
 
     const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            flushQuery();
+            navigate(`/feed/search_result/${query}`);
         }
     };
 
@@ -68,7 +70,7 @@ const SearchInput = () => {
 
             {showDropdown && (loading || error || results.length > 0) && (
                 <ul className={stylesheet.searchDropdown}>
-                    {loading && <li className={stylesheet.searchItem}>Загрузка...</li>}
+                    {loading && <li className={stylesheet.searchItem}><SearchInputLoading loading={loading} /></li>}
                     {error && <li className={stylesheet.searchItem}>Ошибка</li>}
                     {!loading && !error && results.length === 0 && debouncedQuery && (
                         <li className={stylesheet.searchItem}>Ничего не найдено</li>

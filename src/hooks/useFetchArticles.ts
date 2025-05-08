@@ -5,7 +5,7 @@ export interface ArticleData {
     id: number;
     title: string;
     userName: string;
-    articleBody: string;
+    announcement: string;
 }
 
 function useFetchArticles(amount?: number | null, chunk?: number | null, login?: string) {
@@ -54,7 +54,7 @@ function useFetchArticles(amount?: number | null, chunk?: number | null, login?:
                     id: item[0],
                     title: item[1],
                     userName: item[2],
-                    articleBody: item[3],
+                    announcement: item[3],
                 }));
 
                 if (mappedArticles.length === 0) isEmpty = true;
