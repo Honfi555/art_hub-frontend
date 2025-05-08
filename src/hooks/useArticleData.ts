@@ -50,7 +50,7 @@ const useArticleData = (articleId?: string) => {
                     title: data.article[1],
                     userName: data.article[2],
                     announcement: data.article[3],
-                    articleAnnouncement: data.article[4]
+                    articleBody: data.article[4]
                 };
                 setArticle(articleData);
             } catch (err) {
