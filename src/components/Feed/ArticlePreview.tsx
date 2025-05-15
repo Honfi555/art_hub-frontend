@@ -4,6 +4,8 @@ import useFetchArticleImages from "../../hooks/useFetchArticleImages.ts";
 import stylesheet from "./Feed.module.css";
 import {useCookies} from "react-cookie";
 import Loading from "../Loading/Loading.tsx";
+import parse from "html-react-parser";
+import DOMPurify from "dompurify";
 
 export interface ArticleData {
     id: number;
@@ -38,7 +40,7 @@ const ArticlePreview: FC<ArticlePreviewProps> = ({article}) => {
                     </button>) : (<></>)
                 }
             </div>
-            <p className={stylesheet.articleContent}>{article.announcement}</p>
+            <p className={stylesheet.articleContent}>{parse(DOMPurify.sanitize(article.announcement))}</p>
             <p className={stylesheet.articleAuthor}>
                 Автор:{" "}
                 <Link to={`/feed/author/${article.author}`} className={stylesheet.authorHref}>
