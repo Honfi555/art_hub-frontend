@@ -4,6 +4,9 @@
   --color-primary: #cbf3f0;
   --color-primary-href: 255, 159, 28;
   --color-primary-background: #ffffff;
+
+  --desctop-icons-size: 20px;
+  --mobile-icons-size: 25px;
 }
 
 * {
