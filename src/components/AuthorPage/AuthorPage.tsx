@@ -135,7 +135,7 @@ const AuthorPage = () => {
                 {!loading && !error && authorInfo.length > 0 && (
                     <section className={authorStylesheet.authorInfo}>
                         <h1>Информация об авторе</h1>
-                        <div className={authorStylesheet.AuthorInfoContent}>
+                        <div className={authorStylesheet.authorInfoContent}>
                             <p>
                                 <strong>Имя:</strong> {authorInfo[0].authorName}
                             </p>
@@ -163,7 +163,7 @@ const AuthorPage = () => {
                                             className={authorStylesheet.descriptionTextArea}
                                         />
                                         <div className={authorStylesheet.descriptionButtons}>
-                                            <button onClick={handleAcceptEdit}>
+                                            <button onClick={handleAcceptEdit} className={authorStylesheet.descriptionButton}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
                                                      height="20" viewBox="0 0 48 48">
                                                     <path fill="#c8e6c9"
@@ -172,7 +172,7 @@ const AuthorPage = () => {
                                                           d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"></path>
                                                 </svg>
                                             </button>
-                                            <button onClick={handleCancelEdit}>
+                                            <button onClick={handleCancelEdit} className={authorStylesheet.descriptionButton}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
                                                      height="20" viewBox="0 0 48 48">
                                                     <path fill="#f44336"
