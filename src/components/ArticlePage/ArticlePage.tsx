@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {useParams, useNavigate, Link} from "react-router-dom";
 import {useCookies} from "react-cookie";
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify';
 import articleStylesheet from "./ArticlePage.module.css";
 import feedStylesheet from "../Feed/Feed.module.css";
 import useFetchArticleImages from "../../hooks/useFetchArticleImages";
@@ -10,7 +12,7 @@ interface ArticleData {
     id: number;
     title: string;
     userName: string;
-    announcement: string;
+    articleBody: string;
 }
 
 const ArticlePage = () => {
@@ -55,7 +57,7 @@ const ArticlePage = () => {
                     id: articleData[0],
                     title: articleData[1],
                     userName: articleData[2],
-                    announcement: articleData[3],
+                    articleBody: articleData[3],
                 });
             } catch (err) {
                 if (err instanceof Error) {
@@ -101,7 +103,7 @@ const ArticlePage = () => {
                         </button>) : (<></>)
                     }
                 </div>
-                <p className={feedStylesheet.articleContent}>{article.announcement}</p>
+                <p className={feedStylesheet.articleContent}>{parse(DOMPurify.sanitize(article.articleBody))}</p>
                 <p className={feedStylesheet.articleAuthor}>
                     Автор:{" "}
                     <Link to={`/feed/author/${article.userName}`} className={feedStylesheet.authorHref}>
