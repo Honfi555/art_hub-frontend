@@ -33,8 +33,8 @@
 
     gap: 5px;
     img {
-        max-width: 70vw;
-        max-height: 40vh;
+        max-width: 95%;
+        max-height: 50vh;
         border-radius: 10px;
     }
 }

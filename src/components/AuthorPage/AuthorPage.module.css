@@ -25,14 +25,14 @@
     }
 }
 
-.AuthorInfoContent {
+.authorInfoContent {
     width: 100%;
 
     display: flex;
     flex-direction: column;
 
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 10px 5px 10px;
 
     background-color: var(--color-primary);
     border-radius: 10px;
@@ -95,21 +95,33 @@
     align-items: center;
     gap: 10px;
     width: 100%;
+}
 
-    button {
-        width: 20px;
+.descriptionButton {
+    width: var(--desctop-icons-size);
+    height: var(--desctop-icons-size);
 
-        background: none;
-        border: none;
-        outline: none;
-
-        cursor: pointer;
+    svg {
+        width: var(--desctop-icons-size);
+        height: var(--desctop-icons-size);
     }
+
+    background: none;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
 }
 
 .updateDescriptionBtn {
-    width: 15px;
-    height: 15px;
+    width: var(--desctop-icons-size);
+    height: var(--desctop-icons-size);
+
+    svg {
+        width: var(--desctop-icons-size);
+        height: var(--desctop-icons-size);
+    }
+
     border: none;
     background: none;
     outline: none;
@@ -126,6 +138,7 @@
 
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
+    padding: 3px;
 }
 
 @media (max-width: 768px) {
@@ -134,6 +147,26 @@
 
         p {
             padding-left: 3%;
+        }
+    }
+
+    .updateDescriptionBtn {
+        width: var(--mobile-icons-size);
+        height: var(--mobile-icons-size);
+
+        svg {
+            width: var(--mobile-icons-size);
+            height: var(--mobile-icons-size);
+        }
+    }
+
+    .descriptionButton {
+        width: var(--mobile-icons-size);
+        height: var(--mobile-icons-size);
+
+        svg {
+            width: var(--mobile-icons-size);
+            height: var(--mobile-icons-size);
         }
     }
 }
